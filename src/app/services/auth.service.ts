@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' //Not compulsory but recommended. Creates one instance to the whole application without the need to provide it from any NgModule. Just declaring it in the service through the @Injectable decorator.
 })
 export class AuthService {
-  private apiUrl = 'http://your-laravel-api-url/api/auth';
+  private apiUrl = 'http://127.0.0.1:8000/api';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -27,7 +27,17 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  getToken(): string | null {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('token');
+    }
+    return null;
+  }
+
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+    // debugger
+    const token = this.getToken();
+    // Add your logic to check if the token is valid
+    return !!token; // Return true if token exists
   }
 }

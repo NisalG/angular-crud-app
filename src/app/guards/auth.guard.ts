@@ -3,7 +3,7 @@ import { CanActivate, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' //Not compulsory but recommended. Creates one instance to the whole application without the need to provide it from any NgModule. Just declaring it in the service through the @Injectable decorator. 
 })
 export class AuthGuard implements CanActivate {
 

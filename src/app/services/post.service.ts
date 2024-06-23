@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { Post } from '../models/post.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' //Not compulsory but recommended. Creates one instance to the whole application without the need to provide it from any NgModule. Just declaring it in the service through the @Injectable decorator.
 })
 export class PostService {
-  private apiUrl = 'http://your-laravel-api-url/api/posts';
+  private apiUrl = 'http://127.0.0.1:8000/api/posts';
 
   constructor(private http: HttpClient) { }
 

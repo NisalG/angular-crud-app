@@ -4,12 +4,16 @@ import { PostCreateComponent } from './components/post-create/post-create.compon
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', component: PostListComponent },
+  { path: '', component: HomeComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+//   { path: 'dashboard', component: DashboardComponent },
+  { path: 'list', component: PostListComponent, canActivate: [AuthGuard] },
   { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
   { path: 'edit/:id', component: PostEditComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
 ];
