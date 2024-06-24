@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-post-list',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './post-list.component.html'
 })
 export class PostListComponent implements OnInit {
@@ -21,8 +22,11 @@ export class PostListComponent implements OnInit {
   }
 
   deletePost(id: number): void {
-    this.postService.deletePost(id).subscribe(() => {
-      this.posts = this.posts.filter(post => post.id !== id);
-    });
+    const confirmed = window.confirm('Are you sure you want to delete this post?');
+    if (confirmed) {
+      this.postService.deletePost(id).subscribe(() => {
+        this.posts = this.posts.filter(post => post.id !== id);
+      });
+    }
   }
 }

@@ -1,11 +1,23 @@
 <h1 class="text-3xl font-bold text-center mb-8">Posts</h1>
-<a routerLink="['/create']" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-700">Create New Post</a>
+<div class="flex justify-center">
+  <div class="w-full sm:w-1/3">
+    <a routerLink="/create" routerLinkActive="active" aria-current="page" class="block mb-4 px-4 py-2 rounded-md bg-blue-500 text-white text-center hover:bg-blue-700">
+      Create New Post
+    </a>
 
-<div *ngFor="let post of posts; let i = index" class="mb-8 border border-gray-200 rounded-md p-4 flex flex-col">
-  <h2><a routerLink="['/posts', post.id]" class="text-2xl text-gray-800 hover:underline">{{ post.title }}</a></h2>
-  <p class="text-gray-700">{{ post.content }}</p>
-  <div class="flex items-center mt-4">
-    <button (click)="deletePost(post.id)" class="px-3 py-1 rounded-md bg-red-500 text-white hover:bg-red-700">Delete</button>
-    <a routerLink="['/edit', post.id]" class="ml-4 px-3 py-1 rounded-md bg-green-500 text-white hover:bg-green-700">Edit</a>
+    <div *ngFor="let post of posts; let i = index" class="mb-8 border border-gray-200 rounded-md p-4 flex flex-col">
+      <h2>
+        <a [routerLink]="['/posts', post.id]" class="text-2xl text-gray-800 hover:underline">{{ post.title }}</a>
+      </h2>
+      <p class="text-gray-700 mt-2">{{ post.content }}</p>
+      <div class="flex items-center mt-4">
+        <button (click)="deletePost(post.id)" class="px-3 py-1 rounded-md bg-red-500 text-white hover:bg-red-700">
+          Delete
+        </button>
+        <a [routerLink]="['/edit', post.id]" class="ml-4 px-3 py-1 rounded-md bg-green-500 text-white hover:bg-green-700">
+          Edit
+        </a>
+      </div>
+    </div>
   </div>
 </div>

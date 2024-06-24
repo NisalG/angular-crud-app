@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post.model';
@@ -53,8 +53,21 @@ export class PostEditComponent implements OnInit {
     if (this.postForm.valid && this.id) {
       const updatedPost: Post = this.postForm.value;
       this.postService.updatePost(this.id, updatedPost).subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/list']);
       });
+    } else {
+      this.markFormGroupTouched(this.postForm);
     }
+  }
+
+  private markFormGroupTouched(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls).forEach(key => {
+      const control = formGroup.get(key);
+      if (control instanceof FormControl) {
+        control.markAsTouched();
+      } else if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
   }
 }

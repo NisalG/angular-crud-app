@@ -33,7 +33,7 @@ export class PostCreateComponent {
     if (this.postForm.valid) {
       const newPost: Post = this.postForm.value;
       this.postService.createPost(newPost).subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/list']);
       });
     }
   }
