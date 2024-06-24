@@ -1,11 +1,18 @@
 # AngularCrudApp (angular-crud-app)
 Angular 18 CRUD app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
+- Dockerized
+- CI/CD implemented
+- TailwindCSS
+- Ang 18 new interceptors for authentication
+- Modularized - not done since after Angular 17 it’s not the default and not encouraged
+
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
 
 ## Code scaffolding
 
